@@ -21,11 +21,16 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: white;
+  overflow: hidden;
+  background-color: #f0f0f0;
 }
 #app{
   min-height: 100vh;
   background-color: white;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; /* Consistent with global background */
+
 }
 /* CSS code end*/
 </style>
