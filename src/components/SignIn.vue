@@ -1,6 +1,7 @@
 <template>
 <!-- HTML code beginning -->
   <div class ="login-header">
+        <img src="https://sweetandcoffee.spnty.co/assets/img/logo.png" alt="Sweet & Coffee Logo" />
     <h1>Login To Your Store</h1>
   <div class = "sign-in-container">
     <form @submit.prevent=" submitForm">
@@ -11,7 +12,6 @@
       <!--Submit button -->
       <button type = "submit">Sign In</button>
     </form>
-
   </div>
   </div>
   <!-- HTML code end -->
@@ -71,5 +71,11 @@ input, button {
   border: 2px solid black;
   font-weight: bold;
 }
+.login-header img {
+  width: 150px;
+  height: auto;
+  display: block;
+}
+
 /* CSS code end*/
 </style>
