@@ -86,14 +86,14 @@ button:hover {
   color: #333;
   font-weight: bold;
   font-size: 28px;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .sign-in-container {
   background-color: white;
   padding: 20px;
   width: 450px;
-  margin: 50px auto;
+  margin: 25px auto;
   text-align: center;
   border: 2px solid black;
   border-radius: 8px;
