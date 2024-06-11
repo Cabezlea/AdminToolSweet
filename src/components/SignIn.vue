@@ -1,14 +1,18 @@
 <template>
 <!-- HTML code beginning -->
+  <div class ="login-header">
+    <h1>Login To Your Store</h1>
   <div class = "sign-in-container">
     <form @submit.prevent=" submitForm">
       <!-- Input for store name -->
       <input type="text" v-model="storeName" placeholder="Enter Store Name" />
       <!--Input for password -->
-      <input type="password" v-model="storeName" placeholder="Enter store name" />
+      <input type="password" v-model="storeName" placeholder="Enter Password" />
       <!--Submit button -->
       <button type = "submit">Sign In</button>
     </form>
+
+  </div>
   </div>
   <!-- HTML code end -->
 </template>
@@ -35,20 +39,37 @@ export default {
 //JS code end
 </script>
 
-<style scoped>
+<style>
 /* CSS code beginning*/
-.sign-in-container{
+input:focus, button:focus {
+  outline: none;
+  border-color: darkblue;
+}
+
+button:hover {
+  background-color: lightgray;
+}
+.login-header h1 {
+  text-align: center;
+  color: black;
+  font-weight: bolder;
+  font-size: 24px;
+  height: 20px;
+}
+.sign-in-container {
   background-color: white;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   width: 300px;
   margin: 50px auto;
   text-align: center;
+  border: 2px solid black;
 }
 input, button {
   margin-top: 10px;
   width: 90%;
   padding: 10px;
+  border: 2px solid black;
+  font-weight: bold;
 }
 /* CSS code end*/
 </style>
