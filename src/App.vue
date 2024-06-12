@@ -2,7 +2,8 @@
   <!-- HTML code beginning -->
   <div id="app">
     <!-- SignIn component used here -->
-    <SignIn />
+        <router-view></router-view>
+    <!--SignIn /-->
   </div>
     <!-- HTML code end -->
 </template>

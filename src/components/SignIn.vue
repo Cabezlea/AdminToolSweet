@@ -7,7 +7,7 @@
   <div class = "sign-in-container">
     <!-- Dropdown for selecting a location -->
     <select v-model="selectedLocation" @change="onLocationChange">
-      <option disabled value="">Please select a location</option>
+      <option disabled value="" selected>Please select a location</option>
       <option value = "location1">Location 1</option>
       <option value = "location2">Location 2</option>
       <option value = "location3">Location 3</option>
@@ -17,9 +17,10 @@
       <!-- Input for store name -->
       <input type="text" v-model="storeName" placeholder="Enter Store Name" />
       <!--Input for password -->
-      <input type="password" v-model="storeName" placeholder="Enter Password" />
+      <input type="password" v-model="password" placeholder="Enter Password" />
       <!--Submit button -->
       <button type = "submit">Sign In</button>
+
     </form>
 
   </div>
@@ -32,9 +33,9 @@ export default {
   data(){
     // Data function returns an object with component data
     return{
-      storeName: ' ', // Store name entered by the user
-      password: ' ', // Password entered by the user
-      selectedLocation: ' '// Selected location by the user
+      storeName: '', // Store name entered by the user
+      password: '', // Password entered by the user
+      selectedLocation: ''// Selected location by the user
     };
   },
   methods: {
@@ -43,6 +44,7 @@ export default {
       // Submit form is called when the form is submitted
       console.log(`Store: ${this.storeName}, Password: ${this.password}`);
       //Logging the input values to console, will change with the actual authentication
+      this.$router.push({name: 'Home'});
     },
     onLocationChange() {
       console.log("Selected location: ", this.selectedLocation);
@@ -122,6 +124,7 @@ input, select {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for inputs */
   font-size: 16px; /* Larger font size for readability */
+  font-palette:light;
 }
 
 /* CSS code end*/
