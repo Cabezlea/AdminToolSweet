@@ -1,7 +1,6 @@
 <template>
 <div class="home-container">
     <h1>Welcome to the Home Page!</h1>
-    <p>This is the home page of your application.</p>
   </div>
 </template>
 
@@ -13,12 +12,9 @@ export default {
 
 <style >
 .home-container {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 100vh;
-  background-color: #fff; /* Background color white */
+  background-color: #f0f0f0; /* Background color matches the one in the app */
 }
 .home-container h1 {
   color: #000; /* Black color for the font */

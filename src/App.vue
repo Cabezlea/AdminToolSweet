@@ -10,9 +10,9 @@
 
 <script setup>
 //JS code beginning
-import SignIn from "@/components/SignIn.vue";
 
 //JS code end
+import Home from "@/components/Home.vue";
 </script>
 
 <style>
@@ -33,6 +33,6 @@ html, body {
   background-color: #f0f0f0; /* Consistent with global background */
 
 }
+
 /* CSS code end*/
 </style>
-
