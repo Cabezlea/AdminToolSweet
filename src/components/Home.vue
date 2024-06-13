@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
 .home-container {
   align-items: center;
   height: 100vh;
@@ -31,26 +31,32 @@ export default {
   justify-content: center;
   align-items: center;
   margin-top: 20px; /* Adjust as needed */
+  margin: 20px auto; /* Centering the search bar */
 }
 
 .search-input {
   flex-grow: 1;
-  padding: 10px 15px;
+  padding: 10px 20px; /* Increased padding for better visual alignment */
   font-size: 16px;
-  border-radius: 25px 0 0 25px; /* Rounded left corners */
-  border: 2px solid #4CAF50; /* Green border color */
+  border: 2px solid #4CAF50; /* Consistent border for cohesion */
   outline: none;
+  border-radius: 50px 0 0 50px; /* Rounded left corners */
+  border-right: none; /* Removing right border to merge with the button */
 }
 
 .search-button {
-  padding: 10px 1px;
+  padding: 10px 20px; /* Match padding with input for seamless design */
   background-color: #4CAF50; /* Green background */
-  border: none;
   color: white;
   font-size: 16px;
-  border-radius: 0 25px 25px 0; /* Rounded right corners */
+  border: 2px solid #4CAF50; /* Same border to align with input */
+  border-radius: 0 50px 50px 0; /* Rounded right corners */
   cursor: pointer;
   transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: none; /* Remove left border to visually connect to the input */
 }
 
 .search-button:hover {
@@ -59,7 +65,8 @@ export default {
 
 /* Ensure the search input and button align perfectly */
 .search-input, .search-button {
-  height: 45px; /* Ensures both elements are the same height */
+  height: 45px; /* Ensures both elements are the same height for perfect alignment */
 }
+
 
 </style>

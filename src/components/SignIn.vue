@@ -55,7 +55,7 @@ export default {
 //JS code end
 </script>
 
-<style>
+<style scoped>
 /* CSS code beginning*/
 select {
   width: 90%;
