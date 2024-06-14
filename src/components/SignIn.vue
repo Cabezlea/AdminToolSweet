@@ -6,14 +6,8 @@
       <h1>Login To Your Store</h1>
     </div>
     <div class="sign-in-container">
-      <select v-model="selectedLocation" @change="onLocationChange">
-        <option disabled value="" selected>Please select a location</option>
-        <option value="location1">Location 1</option>
-        <option value="location2">Location 2</option>
-        <option value="location3">Location 3</option>
-      </select>
       <form @submit.prevent="submitForm">
-        <input type="text" v-model="storeName" placeholder="Enter Store Name" />
+        <input type="text" v-model="storeName" placeholder="Enter User Name" />
         <input type="password" v-model="password" placeholder="Enter Password" />
         <button type="submit">Sign In</button>
       </form>
@@ -30,7 +24,6 @@ export default {
     return{
       storeName: '', // Store name entered by the user
       password: '', // Password entered by the user
-      selectedLocation: ''// Selected location by the user
     };
   },
   methods: {
@@ -62,7 +55,6 @@ export default {
   width: 100%;
 }
 
-/* CSS code beginning*/
 select {
   width: 90%;
   padding: 10px;
@@ -99,8 +91,8 @@ button:hover {
 
 .sign-in-container {
   background-color: white;
-  padding: 20px;
-  width: 450px;
+  padding: 30px;
+  width: 35%;
   margin: 25px auto;
   text-align: center;
   border: 2px solid black;
@@ -109,9 +101,9 @@ button:hover {
 }
 
 input, button {
-  margin-top: 10px;
+  margin-top: 30px;
   width: 90%;
-  padding: 10px;
+  padding: 12px;
   border: 2px solid black;
   font-weight: bold;
 }
@@ -127,11 +119,15 @@ input, button {
 input, select {
   width: 100%;
   padding: 12px;
-  margin-top: 10px;
+  margin-top: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for inputs */
   font-size: 16px; /* Larger font size for readability */
   font-palette:light;
+}
+
+input {
+  margin-top: 15px;
 }
 
 </style>
