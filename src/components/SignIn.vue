@@ -53,7 +53,6 @@ export default {
 <style scoped>
 
 .main-container {
-  margin-top: 50px;
   background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
@@ -95,7 +94,7 @@ button:hover {
   color: #333;
   font-weight: bold;
   font-size: 28px;
-  margin-top: 50px;
+  margin-top: 20%;
 }
 
 .sign-in-container {
@@ -118,10 +117,11 @@ input, button {
 }
 
 .login-header img {
-  width: 120px;
+  width: 180px;
   height: auto;
   display: block;
   margin: 0 auto; /* Centering the logo */
+  padding: 5%;
 }
 
 input, select {
@@ -132,12 +132,6 @@ input, select {
   box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for inputs */
   font-size: 16px; /* Larger font size for readability */
   font-palette:light;
-}
-
-
-/* Media queries for larger screens */
-@media only screen and (min-width: 1200px) {
-
 }
 
 </style>

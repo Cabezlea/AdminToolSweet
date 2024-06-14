@@ -25,6 +25,7 @@
 }
 
 .search-container {
+  padding: 1rem;
   display: flex;
   padding: 20px;
   background: white;
@@ -70,24 +71,5 @@
   color: #ccc;
 }
 
-
-/* Resizing for bigger screens */
-@media only screen and (min-width: 1200px) {
-
-  .search-container {
-    width: 100%;
-    padding: 1rem;
-  }
-  .search-input {
-    margin: 0 12px; /* Increase margin between inputs */
-    padding: 15px 30px; /* Increase padding for larger inputs */
-    font-size: 18px; /* Increase font size for better readability */
-  }
-
-  .search-btn {
-    padding: 15px 30px; /* Increase padding for the button */
-    font-size: 18px; /* Increase font size for better readability */
-  }
-}
 
 </style>
