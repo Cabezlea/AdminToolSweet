@@ -53,6 +53,7 @@ export default {
 <style scoped>
 
 .main-container {
+  background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
   justify-content: center;

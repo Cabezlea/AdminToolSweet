@@ -1,5 +1,5 @@
 <template>
-  <div ref="homeContainer" class="home-container">
+  <div class = "home-container">
     <div class="search-container">
       <input type="date" class="search-input" placeholder="Date">
       <input type="time" class="search-input" placeholder="Time">
@@ -17,27 +17,18 @@
 </script>
 
 <style scoped>
+
 .home-container {
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Takes full height of the viewport */
-  padding: 5px; /* Adds padding to avoid touching the edges */
-  box-sizing: border-box; /* Includes padding in the height calculation */
-  background-color: #f0f0f0;
 }
-
 .search-container {
-  display: flex;
   padding: 20px;
   background: white;
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  width:auto;
+  width: auto;
   justify-content: center;
   flex-wrap: wrap; /* Allows items to wrap in smaller screens */
-
 }
 
 .search-input {
@@ -49,6 +40,7 @@
   border-radius: 50px;
   transition: all 0.3s ease;
 }
+
 .search-input, .search-btn {
   margin: 5px; /* Adds margin around inputs and button */
   flex-grow: 1; /* Allows inputs and button to grow and fill available space */
@@ -76,15 +68,28 @@
 .search-input::placeholder {
   color: #ccc;
 }
-@media (max-width: 768px) { /* Adjust styles for tablet and below */
-  .search-input, .search-btn {
-    width: 100%; /* Full width for better usability on smaller screens */
-  }
-}
-@media (max-width: 480px) { /* Adjust styles for mobile */
-  .search-container {
-    flex-direction: column; /* Stack elements vertically on very small screens */
-  }
-}
-</style>
 
+
+/* Resizing for bigger screens */
+@media only screen and (min-width: 1200px) {
+  .home-container {
+    display: flex;
+  }
+  .search-container {
+    padding: 40px; /* Increase padding for larger screens */
+    max-width: 1200px; /* Max width to prevent it from becoming too wide */
+  }
+
+  .search-input {
+    margin: 0 12px; /* Increase margin between inputs */
+    padding: 15px 30px; /* Increase padding for larger inputs */
+    font-size: 18px; /* Increase font size for better readability */
+  }
+
+  .search-btn {
+    padding: 15px 30px; /* Increase padding for the button */
+    font-size: 18px; /* Increase font size for better readability */
+  }
+}
+
+</style>
