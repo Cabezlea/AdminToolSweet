@@ -20,6 +20,8 @@
 
 .home-container {
   width: 100%;
+  padding: 1rem;
+  justify-content: center;
 }
 
 .search-container {

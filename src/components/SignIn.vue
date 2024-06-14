@@ -53,6 +53,7 @@ export default {
 <style scoped>
 
 .main-container {
+  margin-top: 50px;
   background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
@@ -136,82 +137,7 @@ input, select {
 
 /* Media queries for larger screens */
 @media only screen and (min-width: 1200px) {
-  .main-container {
-    margin-top: -60px;
-  }
-  select {
-  width: 90%;
-  padding: 10px;
-  margin-top: 10px;
-}
-input:focus, button:focus, select:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #4CAF50; /* Green glow */
-}
 
-button{
-  width: 100%;
-  padding: 12px;
-  background-color: #4CAF50; /* Green color */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 20px; /* Space before button */
-}
-button:hover {
-  background-color: #45a049;
-}
-
-.login-header h1 {
-  width: 100%;
-  text-align: center;
-  color: #333;
-  font-weight: bold;
-  font-size: 28px;
-  margin-top: 50px;
-  margin-left: 185px;
-}
-
-.sign-in-container {
-  background-color: white;
-  padding: 20px;
-  width: 450px;
-  margin: 25px auto;
-  text-align: center;
-  border: 2px solid black;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-  margin-left: 375px;
-}
-
-input, button {
-  margin-top: 10px;
-  width: 90%;
-  padding: 10px;
-  border: 2px solid black;
-  font-weight: bold;
-}
-
-.login-header img {
-  width: 30%;
-  height: auto;
-  display: block;
-  margin-left: 460px;
-  margin-top: 1px;
-}
-
-input, select {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for inputs */
-  font-size: 16px; /* Larger font size for readability */
-  font-palette:light;
-  }
 }
 
 </style>
