@@ -19,16 +19,15 @@
 <style scoped>
 
 .home-container {
-
+  width: 100%;
 }
+
 .search-container {
+  display: flex;
   padding: 20px;
   background: white;
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  width: auto;
-  justify-content: center;
-  flex-wrap: wrap; /* Allows items to wrap in smaller screens */
 }
 
 .search-input {
@@ -72,13 +71,6 @@
 
 /* Resizing for bigger screens */
 @media only screen and (min-width: 1200px) {
-  .home-container {
-    display: flex;
-  }
-  .search-container {
-    padding: 40px; /* Increase padding for larger screens */
-    max-width: 1200px; /* Max width to prevent it from becoming too wide */
-  }
 
   .search-input {
     margin: 0 12px; /* Increase margin between inputs */
