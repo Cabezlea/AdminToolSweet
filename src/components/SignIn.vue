@@ -1,28 +1,23 @@
 <template>
 <!-- HTML code beginning -->
-  <div class ="login-header">
-        <img src="https://sweetandcoffee.spnty.co/assets/img/logo.png" alt="Sweet & Coffee Logo" />
-    <h1>Login To Your Store</h1>
+ <div class="main-container">
+    <div class="login-header">
+      <img src="https://sweetandcoffee.spnty.co/assets/img/logo.png" alt="Sweet & Coffee Logo" />
+      <h1>Login To Your Store</h1>
     </div>
-  <div class = "sign-in-container">
-    <!-- Dropdown for selecting a location -->
-    <select v-model="selectedLocation" @change="onLocationChange">
-      <option disabled value="" selected>Please select a location</option>
-      <option value = "location1">Location 1</option>
-      <option value = "location2">Location 2</option>
-      <option value = "location3">Location 3</option>
-      <!-- More locations can be added here -->
-    </select>
-    <form @submit.prevent=" submitForm">
-      <!-- Input for store name -->
-      <input type="text" v-model="storeName" placeholder="Enter Store Name" />
-      <!--Input for password -->
-      <input type="password" v-model="password" placeholder="Enter Password" />
-      <!--Submit button -->
-      <button type = "submit">Sign In</button>
-
-    </form>
-
+    <div class="sign-in-container">
+      <select v-model="selectedLocation" @change="onLocationChange">
+        <option disabled value="" selected>Please select a location</option>
+        <option value="location1">Location 1</option>
+        <option value="location2">Location 2</option>
+        <option value="location3">Location 3</option>
+      </select>
+      <form @submit.prevent="submitForm">
+        <input type="text" v-model="storeName" placeholder="Enter Store Name" />
+        <input type="password" v-model="password" placeholder="Enter Password" />
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
   </div>
   <!-- HTML code end -->
 </template>
@@ -56,6 +51,16 @@ export default {
 </script>
 
 <style scoped>
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
 /* CSS code beginning*/
 select {
   width: 90%;
@@ -127,5 +132,85 @@ input, select {
   font-palette:light;
 }
 
-/* CSS code end*/
+
+/* Media queries for larger screens */
+@media only screen and (min-width: 1200px) {
+  .main-container {
+    margin-top: -60px;
+  }
+  select {
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
+}
+input:focus, button:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4CAF50; /* Green glow */
+}
+
+button{
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50; /* Green color */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px; /* Space before button */
+}
+button:hover {
+  background-color: #45a049;
+}
+
+.login-header h1 {
+  width: 100%;
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+  font-size: 28px;
+  margin-top: 50px;
+  margin-left: 185px;
+}
+
+.sign-in-container {
+  background-color: white;
+  padding: 20px;
+  width: 450px;
+  margin: 25px auto;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  margin-left: 375px;
+}
+
+input, button {
+  margin-top: 10px;
+  width: 90%;
+  padding: 10px;
+  border: 2px solid black;
+  font-weight: bold;
+}
+
+.login-header img {
+  width: 30%;
+  height: auto;
+  display: block;
+  margin-left: 460px;
+  margin-top: 1px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for inputs */
+  font-size: 16px; /* Larger font size for readability */
+  font-palette:light;
+  }
+}
+
 </style>
