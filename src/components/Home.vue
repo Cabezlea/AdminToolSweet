@@ -72,6 +72,10 @@
 /* Resizing for bigger screens */
 @media only screen and (min-width: 1200px) {
 
+  .search-container {
+    width: 100%;
+    padding: 1rem;
+  }
   .search-input {
     margin: 0 12px; /* Increase margin between inputs */
     padding: 15px 30px; /* Increase padding for larger inputs */
