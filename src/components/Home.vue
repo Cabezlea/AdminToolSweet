@@ -36,6 +36,7 @@
             <td>Domenic</td>
             <td>88,110</td>
             <td>dcode</td>
+            <td>1234567890</td>
           </tr>
           <tr class="active-row">
             <td>2</td>
@@ -49,6 +50,7 @@
             <td>Nick</td>
             <td>52,300</td>
             <td>dcode</td>
+            <td>1234567890</td>
           </tr>
         </tbody>
       </table>
@@ -103,8 +105,6 @@ export default {
   -moz-appearance: none; /* Disables native dropdown styling on Firefox */
 }
 
-
-
 .search-input, .search-btn {
   margin: 5px; /* Adds margin around inputs and button */
   flex-grow: 1; /* Allows inputs and button to grow and fill available space */
@@ -128,6 +128,7 @@ export default {
 .search-input:focus {
   border-color: #2762f3; /* Focus color */
 }
+
 .search-input:hover {
   cursor: pointer;
 }
@@ -149,7 +150,7 @@ export default {
 }
 
 .content-table thead tr {
-    background-color: #009879;
+    background-color: #4CAF50;
     color: #ffffff;
     text-align: left;
     font-weight: bold;
@@ -158,6 +159,7 @@ export default {
 .content-table th,
 .content-table td {
     padding: 12px 15px;
+    color: #333;
 }
 
 .content-table tbody tr {
@@ -176,6 +178,4 @@ export default {
     font-weight: bold;
     color: #009879;
 }
-
-
 </style>
