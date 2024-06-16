@@ -32,26 +32,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Domenic</td>
-            <td>88,110</td>
-            <td>dcode</td>
-            <td>1234567890</td>
-          </tr>
-          <tr class="active-row">
-            <td>2</td>
-            <td>Sally</td>
-            <td>72,400</td>
-            <td>Students</td>
-            <td>1234567890</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Nick</td>
-            <td>52,300</td>
-            <td>dcode</td>
-            <td>1234567890</td>
+           <tr v-for="result in results" :key="result.id" :class="{ 'active-row': result.active }">
+            <td>{{ result.date }}</td>
+            <td>{{ result.time }}</td>
+            <td>{{ result.spoonityId }}</td>
+            <td>{{ result.cardNumber }}</td>
+            <td>{{ result.documentNumber }}</td>
           </tr>
         </tbody>
       </table>
@@ -65,7 +51,15 @@ export default {
     return {
       selectedLocation: '',// Selected location by the user
       startTime: '',
-      endTime: ''
+      endTime: '',
+      date: '',
+      receiptNumber: '',
+      keyword: '',
+      results: [
+        { id: 1, date: '06/14/2024', time: '12:30 PM', spoonityId: '88,110', cardNumber: 'dcode', documentNumber: '1234567890', active: false },
+        { id: 2, date: '06/14/2024', time: '12:35 PM', spoonityId: '72,400', cardNumber: 'Students', documentNumber: '1234567890', active: true },
+        { id: 3, date: '06/14/2024', time: '12:40 PM', spoonityId: '52,300', cardNumber: 'dcode', documentNumber: '1234567890', active: false }
+      ]
     };
   },
   methods: {
@@ -76,7 +70,20 @@ export default {
     submitForm() {
       console.log(`Time Range: ${this.startTime} - ${this.endTime}`)
       // Perform search based on the time range and other criteria
-
+      this.addResult ();
+    },
+    addResult() {
+      const newId = this.results.length + 1;
+      const newResults = {
+        id: newId,
+        date: this.date,
+        time: '${this.startTime}-${this.endTime}',
+        spoonityId: 'New ID',
+        cardNumber: 'New Card',
+        documentNumber: 'New Doc',
+        active: false
+      };
+      this.results.push(newResults);
     }
   }
 }
