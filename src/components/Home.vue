@@ -2,7 +2,8 @@
   <div class = "home-container">
     <div class="search-container">
       <input type="date" class="search-input" placeholder="Date">
-      <input type="time" class="search-input" placeholder="Time">
+      <input type="time" class="search-input" v-model="startTime" placeholder="Start Time">
+      <input type="time" class="search-input" v-model="endTime" placeholder="End Time">
       <input type="text" class="search-input" placeholder="Receipt #">
       <input type="search" class="search-input" required placeholder="Keyword...">
       <!-- Dropdown Menu for Locations -->
@@ -62,13 +63,20 @@
 export default {
   data () {
     return {
-      selectedLocation: ''// Selected location by the user
+      selectedLocation: '',// Selected location by the user
+      startTime: '',
+      endTime: ''
     };
   },
   methods: {
     onLocationChange() {
       console.log("Selected location: ", this.selectedLocation);
       // Handle location change, it will be replaced with the actual data in the server
+    },
+    submitForm() {
+      console.log(`Time Range: ${this.startTime} - ${this.endTime}`)
+      // Perform search based on the time range and other criteria
+
     }
   }
 }
