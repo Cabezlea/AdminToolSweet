@@ -138,9 +138,11 @@ export default {
 }
 
 /* CSS code for the Log Table */
+
+/* Styling for the entire table */
 .content-table {
     border-collapse: collapse;
-    margin: 25px 0;
+    margin: 50px 0;
     font-size: 0.9em;
     min-width: 400px;
     border-radius: 5px 5px 0 0;
@@ -149,6 +151,7 @@ export default {
     width: 100%;
 }
 
+/* Header of the table */
 .content-table thead tr {
     background-color: #4CAF50;
     color: #ffffff;
@@ -159,19 +162,26 @@ export default {
 .content-table th,
 .content-table td {
     padding: 12px 15px;
-    color: #333;
 }
 
+/* Each cell in the table */
+.content-table td {
+  color: #333;
+}
+
+/* Targeting every single table row (tr) */
 .content-table tbody tr {
     border-bottom: 1px solid #dddddd;
 }
 
+/* Targeting every single even row */
 .content-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
 
+/* Border at the bottom of the last row */
 .content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid #4CAF50;
 }
 
 .content-table tbody tr.active-row {
