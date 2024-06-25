@@ -1,6 +1,7 @@
 <template>
   <div class = "home-container">
     <div class="search-container">
+      <form @submit.prevent="handleSearch">
       <input type="date" class="search-input" placeholder="Date">
       <input type="time" class="search-input" v-model="startTime" placeholder="Start Time">
       <input type="time" class="search-input" v-model="endTime" placeholder="End Time">
@@ -17,6 +18,7 @@
       <button class="search-btn" type="submit">
         <span>Search</span>
       </button>
+      </form>
     </div>
 
     <!-- Log Table Container -->
@@ -46,6 +48,7 @@
 </template>
 
 <script >
+import axios from "axios";
 export default {
   data () {
     return {
@@ -66,11 +69,18 @@ export default {
     onLocationChange() {
       console.log("Selected location: ", this.selectedLocation);
       // Handle location change, it will be replaced with the actual data in the server
+      this.fetchData()
+    },
+     handleSearch() {
+      // Perform search based on the time range and other criteria
+      this.addResult();
+      this.fetchData();
     },
     submitForm() {
       console.log(`Time Range: ${this.startTime} - ${this.endTime}`)
       // Perform search based on the time range and other criteria
       this.addResult ();
+      this.fetchData()
     },
     addResult() {
       const newId = this.results.length + 1;
@@ -84,6 +94,16 @@ export default {
         active: false
       };
       this.results.push(newResults);
+    },
+    fetchData() {
+      axios.get('http://localhost:8000/toolsweetapp/api/test/')
+        .then(response => {
+          console.log('Data from Django:', response.data);
+          // You can use response.data to add to results or handle however you need
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
     }
   }
 }
