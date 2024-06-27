@@ -1,19 +1,19 @@
 <template>
   <div class = "home-container">
     <div class="search-container">
-      <form @submit.prevent="handleSearch">
-      <input type="date" class="search-input" placeholder="Date">
-      <input type="time" class="search-input" v-model="startTime" placeholder="Start Time">
-      <input type="time" class="search-input" v-model="endTime" placeholder="End Time">
-      <input type="text" class="search-input" placeholder="Receipt #">
-      <input type="search" class="search-input" required placeholder="Keyword...">
+      <form @submit.prevent="performSearch">
+        <input type="date" class="search-input" v-model="date" placeholder="Date">
+        <input type="time" class="search-input" v-model="startTime" placeholder="Start Time">
+        <input type="time" class="search-input" v-model="endTime" placeholder="End Time">
+        <input type="text" class="search-input" v-model="receiptNumber" placeholder="Receipt #">
+        <input type="search" class="search-input" v-model="keyword" required placeholder="Keyword...">
       <!-- Dropdown Menu for Locations -->
       <select v-model="selectedLocation" @change="onLocationChange" class="search-input">
-    <option disabled value="" selected>Please select a location</option>
-    <option value="location1">Location 1</option>
-    <option value="location2">Location 2</option>
-    <option value="location3">Location 3</option>
-     </select>
+          <option disabled value="" selected>Please select a location</option>
+          <option value="location1">Location 1</option>
+          <option value="location2">Location 2</option>
+          <option value="location3">Location 3</option>
+        </select>
 
       <button class="search-btn" type="submit">
         <span>Search</span>
@@ -34,12 +34,12 @@
           </tr>
         </thead>
         <tbody>
-           <tr v-for="result in results" :key="result.id" :class="{ 'active-row': result.active }">
-            <td>{{ result.date }}</td>
-            <td>{{ result.time }}</td>
-            <td>{{ result.spoonityId }}</td>
-            <td>{{ result.cardNumber }}</td>
-            <td>{{ result.documentNumber }}</td>
+           <tr v-for="result in results" :key="result.Evento" :class="{ 'active-row': result.active }">
+            <td>{{ result.Fecha.split('T')[0] }}</td>
+            <td>{{ result.Fecha.split('T')[1].split('.')[0] }}</td>
+            <td>{{ result.UsuarioAplicacion }}</td>
+            <td>{{ result.Objeto }}</td>
+            <td>{{ result.Evento }}</td>
           </tr>
         </tbody>
       </table>
@@ -52,17 +52,14 @@ import axios from "axios";
 export default {
   data () {
     return {
-      selectedLocation: '',// Selected location by the user
+      selectedLocation: '', // Selected location by the user
       startTime: '',
       endTime: '',
       date: '',
       receiptNumber: '',
       keyword: '',
-      results: [
-        { id: 1, date: '06/14/2024', time: '12:30 PM', spoonityId: '88,110', cardNumber: 'dcode', documentNumber: '1234567890', active: false },
-        { id: 2, date: '06/14/2024', time: '12:35 PM', spoonityId: '72,400', cardNumber: 'Students', documentNumber: '1234567890', active: true },
-        { id: 3, date: '06/14/2024', time: '12:40 PM', spoonityId: '52,300', cardNumber: 'dcode', documentNumber: '1234567890', active: false }
-      ]
+      results: [],
+      message: ''
     };
   },
   methods: {
@@ -71,40 +68,34 @@ export default {
       // Handle location change, it will be replaced with the actual data in the server
       this.fetchData()
     },
-     handleSearch() {
-      // Perform search based on the time range and other criteria
-      this.addResult();
+    performSearch() {
+      console.log(`Performing search with Time Range: ${this.startTime} - ${this.endTime}`);
       this.fetchData();
     },
-    submitForm() {
-      console.log(`Time Range: ${this.startTime} - ${this.endTime}`)
-      // Perform search based on the time range and other criteria
-      this.addResult ();
-      this.fetchData()
-    },
-    addResult() {
-      const newId = this.results.length + 1;
-      const newResults = {
-        id: newId,
-        date: this.date,
-        time: '${this.startTime}-${this.endTime}',
-        spoonityId: 'New ID',
-        cardNumber: 'New Card',
-        documentNumber: 'New Doc',
-        active: false
-      };
-      this.results.push(newResults);
-    },
+
     fetchData() {
-      axios.get('http://localhost:8000/toolsweetapp/api/test/')
-        .then(response => {
-          console.log('Data from Django:', response.data);
-          // You can use response.data to add to results or handle however you need
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
-    }
+  const params = new URLSearchParams();
+  params.append('date', this.date);
+  params.append('start_time', this.startTime);
+  params.append('end_time', this.endTime);
+  params.append('receipt_number', this.receiptNumber);
+  params.append('keyword', this.keyword);
+  params.append('location', this.selectedLocation);
+
+  axios.get('http://localhost:8000/toolsweetapp/api/test/', { params })
+    .then(response => {
+      console.log('Data from Django:', response.data);
+      this.results = response.data;
+      this.message = '';
+    })
+    .catch(error => {
+      if (error.response && error.response.status === 404) {
+        this.message = 'No data found for the provided search criteria.';
+      } else {
+        console.error('Error fetching data:', error);
+      }
+    });
+}
   }
 }
 </script>
