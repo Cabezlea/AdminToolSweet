@@ -7,7 +7,13 @@
         <input type="time" class="search-input" v-model="endTime" placeholder="End Time">
         <input type="text" class="search-input" v-model="receiptNumber" placeholder="Receipt #">
         <input type="search" class="search-input" v-model="keyword" required placeholder="Keyword...">
-      <!-- Dropdown Menu for Locations -->
+      <!-- Dropdown Menu for terminal -->
+      <select v-model="selectedTerminal" @change="onTerminalChange" class="search-input">
+        <option disabled value="" selected>Please select a terminal</option>
+        <option value="Terminal 1">Terminal 1</option>
+        <option value="Terminal 2">Terminal 2</option>
+      </select>
+        <!-- Dropdown Menu for Locations -->
       <select v-model="selectedLocation" @change="onLocationChange" class="search-input">
           <option disabled value="" selected>Please select a location</option>
           <option value="location1">Location 1</option>
@@ -52,6 +58,7 @@ import axios from "axios";
 export default {
   data () {
     return {
+      selectedTerminal: '',
       selectedLocation: '', // Selected location by the user
       startTime: '',
       endTime: '',
@@ -72,6 +79,10 @@ export default {
       console.log(`Performing search with Time Range: ${this.startTime} - ${this.endTime}`);
       this.fetchData();
     },
+    onTerminalChange() {
+      console.log("Selected terminal: ", this.selectedTerminal);
+      this.fetchData();
+    },
 
     fetchData() {
   const params = new URLSearchParams();
@@ -81,6 +92,8 @@ export default {
   params.append('receipt_number', this.receiptNumber);
   params.append('keyword', this.keyword);
   params.append('location', this.selectedLocation);
+  params.append('terminal', this.selectedTerminal);
+
 
   axios.get('http://localhost:8000/toolsweetapp/api/test/', { params })
     .then(response => {
