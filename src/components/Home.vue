@@ -1,5 +1,9 @@
 <template>
   <div class = "home-container">
+    <!-- Display Message Container -->
+    <div v-if="message" class="message-container">
+      {{ message }}
+    </div>
     <div class="search-container">
       <form @submit.prevent="performSearch">
         <input type="date" class="search-input" v-model="date" placeholder="Date">
@@ -104,17 +108,20 @@ export default {
 
       axios.get('http://localhost:8000/toolsweetapp/api/test/', {params})
           .then(response => {
-            console.log('Data from Django:', response.data);
+          if (response.data.length > 0) {
             this.results = response.data;
-            this.message = '';
-          })
-          .catch(error => {
-            if (error.response && error.response.status === 404) {
-              this.message = 'No data found for the provided search criteria.';
-            } else {
-              console.error('Error fetching data:', error);
-            }
-          });
+            this.message = 'Search successful! Displaying results.';
+          } else {
+            this.results = [];
+            this.message = 'No results found for the provided search criteria.';
+          }
+          console.log('Data from Django:', response.data);
+        })
+        .catch(error => {
+          this.results = [];
+          this.message = 'Error occurred while fetching data. Please try again.';
+          console.error('Error fetching data:', error);
+        });
     }
   },
   mounted() {
@@ -237,4 +244,17 @@ export default {
     font-weight: bold;
     color: #009879;
 }
+
+/* Style for the message container */
+.message-container {
+  margin: 10px 0 20px; /* Top, Right/Left, Bottom spacing */
+  padding: 15px 20px; /* Padding inside the container */
+  background-color: #4CAF50; /* Green background to match your buttons */
+  color: white; /* White text color */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center; /* Center the text */
+  font-size: 16px; /* Adequate font size for readability */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
 </style>
