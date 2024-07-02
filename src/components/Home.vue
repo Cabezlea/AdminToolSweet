@@ -119,7 +119,7 @@ export default {
         })
         .catch(error => {
           this.results = [];
-          this.message = 'Error occurred while fetching data. Please try again.';
+          this.message = 'No results found for the provided search criteria, try again.';
           console.error('Error fetching data:', error);
         });
     }
