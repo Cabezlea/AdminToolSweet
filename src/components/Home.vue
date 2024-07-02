@@ -8,18 +8,16 @@
         <input type="text" class="search-input" v-model="receiptNumber" placeholder="Receipt #">
         <input type="search" class="search-input" v-model="keyword" required placeholder="Keyword...">
       <!-- Dropdown Menu for terminal -->
-      <select v-model="selectedTerminal" @change="onTerminalChange" class="search-input">
-        <option disabled value="" selected>Please select a terminal</option>
-        <option value="Terminal 1">Terminal 1</option>
-        <option value="Terminal 2">Terminal 2</option>
+      <select v-model="selectedTerminal" class="search-input">
+      <option disabled value="" selected>Please select a terminal</option>
+      <option value="Terminal 1">Terminal 1</option>
+      <option value="Terminal 2">Terminal 2</option>
       </select>
-        <!-- Dropdown Menu for Locations -->
-      <select v-model="selectedLocation" @change="onLocationChange" class="search-input">
-          <option disabled value="" selected>Please select a location</option>
-          <option value="location1">Location 1</option>
-          <option value="location2">Location 2</option>
-          <option value="location3">Location 3</option>
-        </select>
+<!-- Dropdown Menu for Locations -->
+      <select v-model="selectedLocation" class="search-input">
+      <option disabled value="" selected>Please select a location</option>
+      <option v-for="location in locations" :key="location" :value="location">{{ location }}</option>
+      </select>
 
       <button class="search-btn" type="submit">
         <span>Search</span>
@@ -56,7 +54,7 @@
 <script >
 import axios from "axios";
 export default {
-  data () {
+  data() {
     return {
       selectedTerminal: '',
       selectedLocation: '', // Selected location by the user
@@ -65,6 +63,7 @@ export default {
       date: '',
       receiptNumber: '',
       keyword: '',
+      locations: [],
       results: [],
       message: ''
     };
@@ -83,34 +82,45 @@ export default {
       console.log("Selected terminal: ", this.selectedTerminal);
       this.fetchData();
     },
-
+    fetchLocations() {
+      axios.get('http://localhost:8000/toolsweetapp/api/locations/')
+          .then(response => {
+            this.locations = response.data;
+          })
+          .catch(error => {
+            console.error('Error fetching locations:', error);
+          });
+    },
     fetchData() {
-  const params = new URLSearchParams();
-  params.append('date', this.date);
-  params.append('start_time', this.startTime);
-  params.append('end_time', this.endTime);
-  params.append('receipt_number', this.receiptNumber);
-  params.append('keyword', this.keyword);
-  params.append('location', this.selectedLocation);
-  params.append('terminal', this.selectedTerminal);
+      const params = new URLSearchParams();
+      params.append('date', this.date);
+      params.append('start_time', this.startTime);
+      params.append('end_time', this.endTime);
+      params.append('receipt_number', this.receiptNumber);
+      params.append('keyword', this.keyword);
+      params.append('location', this.selectedLocation);
+      params.append('terminal', this.selectedTerminal);
 
 
-  axios.get('http://localhost:8000/toolsweetapp/api/test/', { params })
-    .then(response => {
-      console.log('Data from Django:', response.data);
-      this.results = response.data;
-      this.message = '';
-    })
-    .catch(error => {
-      if (error.response && error.response.status === 404) {
-        this.message = 'No data found for the provided search criteria.';
-      } else {
-        console.error('Error fetching data:', error);
-      }
-    });
-}
+      axios.get('http://localhost:8000/toolsweetapp/api/test/', {params})
+          .then(response => {
+            console.log('Data from Django:', response.data);
+            this.results = response.data;
+            this.message = '';
+          })
+          .catch(error => {
+            if (error.response && error.response.status === 404) {
+              this.message = 'No data found for the provided search criteria.';
+            } else {
+              console.error('Error fetching data:', error);
+            }
+          });
+    }
+  },
+  mounted() {
+    this.fetchLocations();
   }
-}
+};
 </script>
 
 <style scoped>
